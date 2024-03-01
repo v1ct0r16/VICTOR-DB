@@ -5,11 +5,14 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { productEntity } from './Entity/product.entity';
 import { DatabaseModule } from './database/database.module';
 import { ProductModule } from './Product/product.module';
+import { ConfigModule } from '@nestjs/config';
 // import {}
 
 
 @Module({
-  imports: [DatabaseModule, ProductModule],
+  imports: [ConfigModule.forRoot({
+    isGlobal: true
+  }),DatabaseModule, ProductModule],
   controllers: [AppController],
   providers: [AppService],
 })

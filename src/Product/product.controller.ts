@@ -28,7 +28,7 @@ return await this.prodservice.deleteById(id)
 
 @Delete('deleteProduct/:name')
 async deleteProductByName(@Param('name') name: string): Promise<void> {
-    await this.prodservice.deleteProductByName();
+    await this.prodservice.deleteProductByName(name);
 }
 
 // update product by name

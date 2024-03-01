@@ -7,7 +7,8 @@ import { productEntity } from "src/Entity/product.entity";
 @Injectable()
 export class ProductService {
     [x: string]: any;
-    // [x: string]: any;
+
+   
     constructor(
         @InjectRepository(productEntity)
         private ProductRepository: Repository<productEntity>,
@@ -81,8 +82,8 @@ async updateProductByName(
     }
 //Merge the payload into the existing product entity
 Object.assign(product, payload);
-return this.ProductRepository.save(productEntity);
-}
+return this.ProductRepository.save(product)
+} 
 
 async updateProduct(id, Payload) {
     const update = this.ProductRepository.findOne({where: { id }});
