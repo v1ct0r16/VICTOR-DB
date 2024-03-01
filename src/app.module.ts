@@ -5,11 +5,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { productEntity } from './Entity/product.entity';
 import { DatabaseModule } from './database/database.module';
 import { ProductModule } from './Product/product.module';
-import {}
+// import {}
 
 
 @Module({
-  imports: [,DatabaseModule, ProductModule],
+  imports: [DatabaseModule, ProductModule],
   controllers: [AppController],
   providers: [AppService],
 })

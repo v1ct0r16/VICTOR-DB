@@ -22,8 +22,8 @@ async updateProductByid(@Param('id')id, @Body()Payload){
 
 // Delete by id
 @Delete(':id')
-async deleteProductById(@Param(:id)id:number){
-return awiat this.prodservice.deleteById(id)
+async deleteProductById(@Param(':id')id:number){
+return await this.prodservice.deleteById(id)
 }
 
 @Delete('deleteProduct/:name')
@@ -34,7 +34,7 @@ async deleteProductByName(@Param('name') name: string): Promise<void> {
 // update product by name
 @Patch('updateProduct/:name')
 async updateProductByName(@Param('name') name: string, @Body() Payload: Partial<productEntity>){
-return await this.prodservice.updateProductByName(Name, Payload)
+return await this.prodservice.updateProductByName(name, Payload)
 }
 
 // Get Product by name

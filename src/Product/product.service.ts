@@ -7,14 +7,15 @@ import { productEntity } from "src/Entity/product.entity";
 @Injectable()
 export class ProductService {
     [x: string]: any;
+    // [x: string]: any;
     constructor(
         @InjectRepository(productEntity)
         private ProductRepository: Repository<productEntity>,
     ){}
 
     //Add product
-    async addProduct(payload): {
-        const add = await this.ProductRepository.create(payload);
+    async addProduct(payload){
+        const add = this.ProductRepository.create(payload);
         return this.ProductRepository.save(add);
     }
 
@@ -59,9 +60,9 @@ return {
 //Delete Product by name
 async deleteProductByName(name :string) :Promise<void> {
     const find = await this.ProductRepository.delete({ name });
-    if (result.affected === 0) {
-        throw new HttpException('Product not found', 404); // it will be a  404 eroor, meaning not found
-    }
+    // if (result.affected === 0) {
+    //     throw new HttpException('Product not found', 404); // it will be a  404 eroor, meaning not found
+    // }
 }
 
 // find all products 
@@ -72,8 +73,8 @@ async findAll() {
 //Update product by name
 async updateProductByName(
     name: string,
-    payload: partial<productEntity>,
-): Promise<ProductEntity> {
+    payload: Partial<productEntity>,
+): Promise<productEntity> {
     const product = await this.ProductRepository.findOne({ where: { name } });
     if (!product) {
         throw new HttpException('Product not found', 404); // it will be a  404 eroor, meaning not found
@@ -84,17 +85,17 @@ return this.ProductRepository.save(productEntity);
 }
 
 async updateProduct(id, Payload) {
-    const update = this.ProductRepository.findOne({where { id }});
+    const update = this.ProductRepository.findOne({where: { id }});
     if (!update) {
         throw new  HttpException('Product not found', 404);
     }
 
-    const updateProduct = await this.ProductRepository.update(id, payload);
+    const updateProduct = await this.ProductRepository.update(id, Payload);
     return{
         statusCode:201,
         message: 'Product update succesfully',
         data: updateProduct,
-    };
+    }
     }
 }
 
